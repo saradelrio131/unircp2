@@ -1,0 +1,10 @@
+---
+- name: 01-playbook
+  hosts: all
+  vars_files:
+   - "group_vars/install.yaml"
+   - "group_vars/configure.yaml"
+  gather_facts: false
+  roles:
+   - install
+   - configure

@@ -1,0 +1,4 @@
+---
+- include_tasks: 01-rpm.yaml
+#- include_tasks: 02-rpm.yaml
+#- include_tasks: 03-rpm.yaml
