@@ -1,0 +1,24 @@
+# Set up FirewallD 
+- name: Start firewalld
+  command: systemctl start firewalld
+  become: true
+
+- name: Enable firewalld
+  command: systemctl enable firewalld
+  become: true
+
+# Activate transparent masquerading
+# modprobe br_netfilter
+- name: modprobe br_netfilter
+  command: modprobe br_netfilter
+  become: true
+
+# firewall-cmd --add-masquerade --permanent
+- name: Add masquerade
+  command: firewall-cmd --add-masquerade --permanent
+  become: true
+
+# firewall-cmd --reload
+- name: Reload firewall
+  command: firewall-cmd --reload
+  become: true

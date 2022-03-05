@@ -1,0 +1,11 @@
+---
+- name: create file /etc/hosts
+  template:
+    src: exports.j2
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+  
+  

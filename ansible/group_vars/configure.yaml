@@ -2,5 +2,9 @@
 nfs_dir: /srv/nfs
 
 master: 20.107.78.100
+master_hostname: kubemaster
+master_fqdn: kubemaster.acme.es
 
 worker: 20.107.22.178
+worker_hostname: kubenode
+worker_fqdn: kubenode.acme.es
