@@ -1,23 +1,29 @@
 ---
 # Update and upgrade dnf packages
 # dnf update -y
-- name: Update and upgrade dnf packages
-  dnf:
-    name: "*"
-    state: latest
-  become: true
+#- name: Update and upgrade dnf packages
+#  dnf:
+#    name: "*"
+#    state: latest
+#  become: true
+
+# Test not requiring root privileges  
+- name: get the current mode of SELinux
+  command: getenforce
   
 # Timezone configuration
 # timedatectl set-timezone Europe/Madrid
 - name: Set timezone to Europe/Madrid
   community.general.timezone:
     name: Europe/Madrid
+  become: true
     
 # dnf install chrony -y
 - name: Install chrony
   dnf:
     name: chrony
     state: present
+  become: true
     
 # systemctl enable chronyd
 # systemctl start chronyd
@@ -26,14 +32,17 @@
     name: chronyd
     state: started
     enabled: yes
+  become: true
 
 # timedatectl set-ntp true
 - name: Set NTP true
   command: timedatectl set-ntp true
+  become: true
   
 # sed -i s/=enforcing/=disabled/g /etc/selinux/config
 - name: Disable SELinux 
   shell: sed -i s/=enforcing/=disabled/g /etc/selinux/config
+  become: true
   
 # dnf install nfs-utils nfs4-acl-tools wget -y
 - name: Install nfs-utils nfs4-acl-tools wget
@@ -43,7 +52,9 @@
       - nfs4-acl-tools
       - wget
     state: present
+  become: true
     
 # Reboot  
 - name: Unconditionally reboot the machine with all defaults
   reboot:
+  become: true
