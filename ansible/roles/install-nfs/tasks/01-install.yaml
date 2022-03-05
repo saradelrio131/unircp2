@@ -1,0 +1,21 @@
+---
+# dnf install nfs-utils net-tools -y
+- name: Install nfs-utils net-tools
+  dnf:
+    name:
+      - nfs-utils
+      - net-tools
+    state: present
+  become: true
+    
+# systemctl enable nfs-server
+# systemctl start nfs-server
+- name: Enable nfs-server
+  systemd:
+    name: nfs-server
+    enabled: yes
+  become: true
+
+- name: Start nfs-server
+  command: systemctl start nfs-server
+  become: true

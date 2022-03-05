@@ -1,9 +1,6 @@
 ---
 nfs_dir: /srv/nfs
 
-master: master
+master: 20.107.78.100
 
-worker1: worker1
-
-worker2: worker2
-
+worker: 20.107.22.178
