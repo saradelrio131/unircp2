@@ -1,0 +1,39 @@
+# exportfs -r
+- name: Apply NFS configuration
+  command: exportfs -r
+  become: true
+
+# exportfs -s
+- name: Apply NFS configuration
+  command: exportfs -s          
+  become: true
+
+# Set up FirewallD 
+- name: Start firewalld
+  command: systemctl start firewalld
+  become: true
+
+- name: Enable firewalld
+  command: systemctl enable firewalld
+  become: true
+
+# Open firewall ports
+# firewall-cmd --permanent --add-service=nfs
+- name: Add service nfs
+  command: firewall-cmd --permanent --add-service=nfs
+  become: true
+
+# firewall-cmd --permanent --add-service=rpc-bind
+- name: Add service rcp-bind
+  command: firewall-cmd --permanent --add-service=rpc-bind
+  become: true
+
+# firewall-cmd --permanent --add-service=mountd
+- name: Add service mountd
+  command: firewall-cmd --permanent --add-service=mountd
+  become: true
+
+# firewall-cmd --reload
+- name: Reload conf
+  command: firewall-cmd --reload
+  become: true

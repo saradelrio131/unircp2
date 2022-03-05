@@ -1,3 +1,4 @@
 ---
 - include_tasks: 01-template.yaml
 - include_tasks: 02-files.yaml
+- include_tasks: 03-config.yaml
