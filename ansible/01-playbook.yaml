@@ -6,5 +6,6 @@
    - "group_vars/configure.yaml"
   gather_facts: false
   roles:
-   - install
-   - configure
+   - init
+   #- install
+   #- configure

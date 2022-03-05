@@ -1,9 +1,9 @@
 ---
-nfs_dir:
+nfs_dir: /srv/nfs
 
-master:
+master: master
 
-worker1:
+worker1: worker1
 
-worker2:
+worker2: worker2
 

@@ -1,3 +1,4 @@
+---
 - name: creacion del fichero /etc/exports
   template:
     src: exports.j2

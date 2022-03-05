@@ -1,0 +1,9 @@
+---
+- name: copy file /etc/exports
+  copy:
+    src: exports
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: 0644
+  become: true

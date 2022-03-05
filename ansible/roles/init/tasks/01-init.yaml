@@ -1,0 +1,49 @@
+---
+# Update and upgrade dnf packages
+# dnf update -y
+- name: Update and upgrade dnf packages
+  dnf:
+    name: "*"
+    state: latest
+  become: true
+  
+# Timezone configuration
+# timedatectl set-timezone Europe/Madrid
+- name: Set timezone to Europe/Madrid
+  community.general.timezone:
+    name: Europe/Madrid
+    
+# dnf install chrony -y
+- name: Install chrony
+  dnf:
+    name: chrony
+    state: present
+    
+# systemctl enable chronyd
+# systemctl start chronyd
+- name: Enable chronyd
+  ansible.builtin.systemd:
+    name: chronyd
+    state: started
+    enabled: yes
+
+# timedatectl set-ntp true
+- name: Set NTP true
+  command: timedatectl set-ntp true
+  
+# sed -i s/=enforcing/=disabled/g /etc/selinux/config
+- name: Disable SELinux 
+  shell: sed -i s/=enforcing/=disabled/g /etc/selinux/config
+  
+# dnf install nfs-utils nfs4-acl-tools wget -y
+- name: Install nfs-utils nfs4-acl-tools wget
+  dnf:
+    name: 
+      - nfs-utils
+      - nfs4-acl-tools
+      - wget
+    state: present
+    
+# Reboot  
+- name: Unconditionally reboot the machine with all defaults
+  reboot:
