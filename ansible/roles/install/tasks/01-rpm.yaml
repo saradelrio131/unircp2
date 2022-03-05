@@ -1,7 +1,0 @@
----
-- name: Install k8s
-  yum:
-    name: "{{ rpms }}"
-    state: present
-    disable_excludes: 'kubernetes'
-  become: true
