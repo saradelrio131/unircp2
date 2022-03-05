@@ -28,10 +28,13 @@
 # systemctl enable chronyd
 # systemctl start chronyd
 - name: Enable chronyd
-  ansible.builtin.systemd:
+  systemd:
     name: chronyd
-    state: started
     enabled: yes
+  become: true
+
+- name: Start chronyd
+  command: systemctl start chronyd
   become: true
 
 # timedatectl set-ntp true
