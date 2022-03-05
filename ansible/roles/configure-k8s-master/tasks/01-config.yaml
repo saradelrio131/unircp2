@@ -1,0 +1,80 @@
+# Configure firewall
+# firewall-cmd --permanent --add-port=6443/tcp
+- name: Add port 6443 - Kubernetes API Server
+  command: firewall-cmd --permanent --add-port=6443/tcp
+  become: true
+
+# firewall-cmd --permanent --add-port=2379-2380/tcp
+- name: Add ports 2379-2380 - etcd server client API
+  command: firewall-cmd --permanent --add-port=2379-2380/tcp
+  become: true
+
+# firewall-cmd --permanent --add-port=10250-10252/tcp
+- name: Add ports 10250-10252 - Kubelet API / kube-scheduler / kube-controller-manager
+  command: firewall-cmd --permanent --add-port=10250-10252/tcp
+  become: true
+
+# firewall-cmd --permanent --add-port=10255/tcp
+- name: Add port 10255 - Statistics
+  command: firewall-cmd --permanent --add-port=10255/tcp
+  become: true
+
+# firewall-cmd --reload
+- name: Reload firewall-cmd
+  command: firewall-cmd --reload
+  become: true
+
+# Configure kudeadm
+- name: kubeadm config images pull
+  command: kubeadm config images pull
+  become: true
+
+# Allow access to worker nodes
+- name: firewall-cmd --permanent --add-rich-rule 'rule family=ipv4 source address=10.0.1.11/24 accept'
+  command: firewall-cmd --permanent --add-rich-rule 'rule family=ipv4 source address=10.0.1.11/24 accept'
+  become: true
+
+- name: firewall-cmd --reload
+  command: firewall-cmd --reload
+  become: true
+
+# Install CNI k8s plug-in & define newtwork PODs
+- name: firewall-cmd --reload
+  command: kubeadm init --pod-network-cidr 10.0.0.0/16
+  register: output
+  delegate_to: 127.0.0.1
+  become: true
+
+- name: output
+  debug: msg="kubeadm output {{ output.stdout }}"
+  delegate_to: 127.0.0.1
+  become: true
+
+# Install POD network
+- name: export KUBECONFIG=/etc/kubernetes/admin.conf
+  command: export KUBECONFIG=/etc/kubernetes/admin.conf
+  become: true
+
+# Grant root access to k8s cluster
+- name: mkdir -p /root/.kube
+  file:
+    path: /root/.kube
+    state: directory
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+
+- name: cp -i /etc/kubernetes/admin.conf /root/.kube/config
+  copy: 
+    src: /etc/kubernetes/admin.conf
+    dest: /root/.kube/config
+  become: true
+
+- name: chown $(id -u):$(id -g) /root/.kube/config
+  command: chown $(id -u):$(id -g) /root/.kube/config
+  become: true
+
+- name: kubectl get nodes
+  command: kubectl get nodes
+  become: true
