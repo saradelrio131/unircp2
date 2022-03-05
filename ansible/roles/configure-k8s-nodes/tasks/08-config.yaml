@@ -1,0 +1,18 @@
+# Install k8s
+- name: Install k8s
+  yum:
+    name: "{{ rpms }}"
+    state: present
+    disable_excludes: 'kubernetes'
+  become: true
+
+# Ensable and start kubelet
+- name: Enable kubelet
+  systemd:
+    name: kubelet
+    enabled: yes
+  become: true
+
+- name: Start kubelet
+  command: systemctl start kubelet
+  become: true

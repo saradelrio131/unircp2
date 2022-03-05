@@ -1,0 +1,18 @@
+# dnf install chrony -y
+- name: Install cri-o
+  dnf:
+    name: cri-o
+    state: present
+  become: true
+
+# Ensable and start crio service
+- name: Enable crio
+  systemd:
+    name: crio
+    enabled: yes
+  become: true
+
+- name: Start crio
+  command: systemctl start crio
+  become: true
+

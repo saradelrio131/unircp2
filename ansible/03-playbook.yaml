@@ -6,5 +6,4 @@
    - "group_vars/configure.yaml"
   gather_facts: false
   roles:
-   - configure-dns
-   #- configure-firewalld
+   - configure-k8s-nodes

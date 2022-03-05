@@ -3,3 +3,7 @@
 - include_tasks: 02-config.yaml
 - include_tasks: 03-copy.yaml
 - include_tasks: 04-config.yaml
+- include_tasks: 05-copy.yaml
+- include_tasks: 06-config.yaml
+- include_tasks: 07-copy.yaml
+- include_tasks: 08-config.yaml

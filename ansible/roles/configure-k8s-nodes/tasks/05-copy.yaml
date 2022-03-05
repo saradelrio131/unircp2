@@ -1,0 +1,9 @@
+---
+- name: copy file /etc/modules-load.d/crio.conf
+  copy:
+    src: crio.conf
+    dest: /etc/modules-load.d/crio.conf
+    owner: root
+    group: root
+    mode: 0644
+  become: true
