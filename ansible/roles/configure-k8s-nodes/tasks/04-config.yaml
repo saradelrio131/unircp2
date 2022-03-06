@@ -12,6 +12,8 @@
 # sed -i '/swap/d' /etc/fstab
 - name: Remove swap from fstab
   shell: sed -i '/swap/d' /etc/fstab
+  args:
+    warn: false
   become: true
 
 # Install CRI-O engine
