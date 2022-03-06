@@ -1,0 +1,6 @@
+# Configure calico
+# kubectl apply -f https://docs.projectcalico.org/manifests/canal.yaml
+- name: Configure calico
+  command: kubectl apply -f https://docs.projectcalico.org/manifests/canal.yaml
+  run_once: yes
+  become: true

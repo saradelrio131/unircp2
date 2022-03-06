@@ -16,3 +16,6 @@ ansible-playbook -i hosts 04-playbook.yaml
 
 # Install SDN in Azure
 ansible-playbook -i hosts 05-playbook.yaml
+
+# Configure SDN in Azure
+ansible-playbook -i hosts 06-playbook.yaml

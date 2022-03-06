@@ -1,0 +1,9 @@
+---
+- name: 06-playbook
+  hosts: master
+  vars_files:
+   - "group_vars/install.yaml"
+   - "group_vars/configure.yaml"
+  gather_facts: false
+  roles:
+   - configure-sdn-azure
