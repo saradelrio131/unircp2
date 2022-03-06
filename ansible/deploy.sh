@@ -13,3 +13,6 @@ ansible-playbook -i hosts 03-playbook.yaml
 
 # Configure k8s on master node 
 ansible-playbook -i hosts 04-playbook.yaml
+
+# Install SDN in Azure
+ansible-playbook -i hosts 05-playbook.yaml

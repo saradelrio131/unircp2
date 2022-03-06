@@ -1,0 +1,15 @@
+# Configure firewall
+# firewall-cmd --permanent --add-port=8285/udp
+- name: Add port 8285
+  command: firewall-cmd --permanent --add-port=8285/udp
+  become: true
+
+# firewall-cmd --permanent --add-port=8472/udp
+- name: Add port 8472
+  command: firewall-cmd --permanent --add-port=8472/udp
+  become: true
+
+# firewall-cmd --reload
+- name: Reload firewall-cmd
+  command: firewall-cmd --reload
+  become: true
