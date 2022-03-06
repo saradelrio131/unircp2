@@ -4,3 +4,8 @@
   command: kubectl apply -f https://docs.projectcalico.org/manifests/canal.yaml
   run_once: yes
   become: true
+
+# Reboot  
+- name: Unconditionally reboot the machine
+  reboot:
+  become: true
