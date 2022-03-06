@@ -1,6 +1,6 @@
 ---
 - name: 02-playbook
-  hosts: master
+  hosts: nfs
   vars_files:
    - "group_vars/install.yaml"
    - "group_vars/configure.yaml"
