@@ -1,7 +1,11 @@
 # Configure firewall
 # firewall-cmd --zone=public --permanent --add-port={10250,30000-32767}/tcp
-- name: Add ports 10250,30000-32767
-  command: firewall-cmd --zone=public --permanent --add-port={10250,30000-32767}/tcp
+- name: Add port 10250
+  command: firewall-cmd --zone=public --permanent --add-port=10250/tcp
+  become: true
+
+- name: Add ports 30000-32767
+  command: firewall-cmd --zone=public --permanent --add-port=30000-32767/tcp
   become: true
 
 # firewall-cmd --reload
