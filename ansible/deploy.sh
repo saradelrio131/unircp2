@@ -19,3 +19,6 @@ ansible-playbook -i hosts 05-playbook.yaml
 
 # Configure SDN in Azure
 ansible-playbook -i hosts 06-playbook.yaml
+
+# Deploy ingress controller
+ansible-playbook -i hosts 07-playbook.yaml
