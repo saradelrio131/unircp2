@@ -15,5 +15,5 @@
 
 # Join the cluster
 - name: Join the cluster
-  command: "{{ kubeadm-command }}"
+  command: kubeadm join "{{ masterip }}":"{{ masterport }}" --token "{{ token }}" --discovery-token-ca-cert-hash sha256:"{{ hash }}"
   become: true

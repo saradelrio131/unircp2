@@ -25,3 +25,6 @@ ansible-playbook -i hosts 07-playbook.yaml
 
 # Configure k8s workers
 ansible-playbook -i hosts 08-playbook.yaml
+
+# Create non-admin user to manage the k8s cluster
+ansible-playbook -i hosts 09-playbook.yaml
