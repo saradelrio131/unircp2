@@ -1,0 +1,15 @@
+# Configure firewall
+# firewall-cmd --zone=public --permanent --add-port={10250,30000-32767}/tcp
+- name: Add ports 10250,30000-32767
+  command: firewall-cmd --zone=public --permanent --add-port={10250,30000-32767}/tcp
+  become: true
+
+# firewall-cmd --reload
+- name: Reload firewall-cmd
+  command: firewall-cmd --reload
+  become: true
+
+# Join the cluster
+- name: Join the cluster
+  command: "{{ kubeadm-command }}"
+  become: true

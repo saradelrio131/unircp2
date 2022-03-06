@@ -1,0 +1,9 @@
+---
+- name: 08-playbook
+  hosts: workers
+  vars_files:
+   - "group_vars/install.yaml"
+   - "group_vars/configure.yaml"
+  gather_facts: false
+  roles:
+   - configure-k8s-workers

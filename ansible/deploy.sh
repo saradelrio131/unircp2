@@ -22,3 +22,6 @@ ansible-playbook -i hosts 06-playbook.yaml
 
 # Deploy ingress controller
 ansible-playbook -i hosts 07-playbook.yaml
+
+# Configure k8s workers
+ansible-playbook -i hosts 08-playbook.yaml
