@@ -46,6 +46,8 @@
 - name: Disable SELinux 
   shell: sed -i s/=enforcing/=disabled/g /etc/selinux/config
   become: true
+  args:
+    warn: false
   
 # dnf install nfs-utils nfs4-acl-tools wget -y
 - name: Install nfs-utils nfs4-acl-tools wget
