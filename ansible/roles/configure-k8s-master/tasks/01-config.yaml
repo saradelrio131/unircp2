@@ -39,15 +39,15 @@
   become: true
 
 # Install CNI k8s plug-in & define newtwork PODs
-#- name: kubeadm init --pod-network-cidr 10.0.0.0/16
-#  shell: kubeadm init --pod-network-cidr 10.0.0.0/16
-#  register: output
-#  become: true
-#  run_once: yes
+- name: kubeadm init --pod-network-cidr 10.0.0.0/16
+  shell: kubeadm init --pod-network-cidr 10.0.0.0/16
+  register: output
+  become: true
+  run_once: yes
 
-#- name: Print kubeadm init output
-#  debug: msg="kubeadm init output {{ output.stdout }}"
-#  become: true
+- name: Print kubeadm init output
+  debug: msg="kubeadm init output {{ output.stdout }}"
+  become: true
 
 # Install POD network
 - name: export KUBECONFIG
