@@ -39,20 +39,19 @@
   become: true
 
 # Install CNI k8s plug-in & define newtwork PODs
-- name: kubeadm init --pod-network-cidr 10.0.0.0/16
-  shell: kubeadm init --pod-network-cidr 10.0.0.0/16
-  register: output
-  become: true
+#- name: kubeadm init --pod-network-cidr 10.0.0.0/16
+#  shell: kubeadm init --pod-network-cidr 10.0.0.0/16
+#  register: output
+#  become: true
+#  run_once: yes
 
-- name: Print kubeadm init output
-  debug: msg="kubeadm init output {{ output.stdout }}"
-  become: true
+#- name: Print kubeadm init output
+#  debug: msg="kubeadm init output {{ output.stdout }}"
+#  become: true
 
 # Install POD network
 - name: export KUBECONFIG
-  shell: "echo $KUBECONFIG"
-  environment:
-    KUBECONFIG=/etc/kubernetes/admin.conf
+  shell: "export KUBECONFIG=/etc/kubernetes/admin.conf"
   become: true
 
 # Grant root access to k8s cluster
@@ -69,10 +68,13 @@
   copy: 
     src: /etc/kubernetes/admin.conf
     dest: /root/.kube/config
+    remote_src: yes
   become: true
 
 - name: chown $(id -u):$(id -g) /root/.kube/config
   shell: chown $(id -u):$(id -g) /root/.kube/config
+  args:
+    warn: false
   become: true
 
 - name: kubectl get nodes
