@@ -39,20 +39,22 @@
   become: true
 
 # Install CNI k8s plug-in & define newtwork PODs
-- name: firewall-cmd --reload
+- name: kubeadm init --pod-network-cidr 10.0.0.0/16
   command: kubeadm init --pod-network-cidr 10.0.0.0/16
-  register: output
-  delegate_to: 127.0.0.1
+#  register: output
+#  delegate_to: 127.0.0.1
   become: true
 
-- name: output
-  debug: msg="kubeadm output {{ output.stdout }}"
-  delegate_to: 127.0.0.1
-  become: true
+#- name: output
+#  debug: msg="kubeadm output {{ output.stdout }}"
+#  delegate_to: 127.0.0.1
+#  become: true
 
 # Install POD network
-- name: export KUBECONFIG=/etc/kubernetes/admin.conf
-  command: export KUBECONFIG=/etc/kubernetes/admin.conf
+- name: export KUBECONFIG
+  shell: "echo $KUBECONFIG"
+  environment:
+    KUBECONFIG=/etc/kubernetes/admin.conf
   become: true
 
 # Grant root access to k8s cluster
