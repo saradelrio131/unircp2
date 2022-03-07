@@ -1,36 +1,36 @@
 # Create non-root user to manage the k8s cluster
-- name: Create user "{{ uusername }}"
+- name: Create user {{ uusername }}
   user: 
     name: "{{ uusername }}"
     password: "{{ upassword | password_hash('sha512') }}"
   become: true
 
-- name: mkdir -p /home/"{{ uusername }}"/.kube
+- name: mkdir -p /home/{{ uusername }}/.kube
   file:
-    path: /home/"{{ uusername }}"/.kube
+    path: /home/{{ uusername }}/.kube
     state: directory
     owner: root
     group: root
     mode: 0755
   become: true
 
-- name: cp -i /etc/kubernetes/admin.conf /home/"{{ uusername }}"/.kube/config
+- name: cp -i /etc/kubernetes/admin.conf /home/{{ uusername }}/.kube/config
   copy: 
     src: /etc/kubernetes/admin.conf
-    dest: /home/"{{ uusername }}"/.kube/config
+    dest: /home/{{ uusername }}/.kube/config
     remote_src: yes
   become: true
 
-- name: chown "{{ uusername }}". /home/"{{ uusername }}"/.kube/config
-  shell: chown "{{ uusername }}". /home/"{{ uusername }}"/.kube/config
+- name: chown {{ uusername }}. /home/{{ uusername }}/.kube/config
+  shell: chown {{ uusername }}. /home/{{ uusername }}/.kube/config
   args:
     warn: false
   become: true
 
-- name: copy file /etc/sudoers.d/"{{ uusername }}"
+- name: copy file /etc/sudoers.d/{{ uusername }}
   copy:
-    src: "{{ uusername }}"
-    dest: /etc/sudoers.d/"{{ uusername }}"
+    src: uusername
+    dest: /etc/sudoers.d/{{ uusername }}
     owner: root
     group: root
     mode: 0644
