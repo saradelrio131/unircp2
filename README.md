@@ -1,9 +1,8 @@
-# Deployment on Kubernetes in Microsoft Azure
+# UNIR CP2: Deployment on Kubernetes in Microsoft Azure
 
 This repository contains the definitions for the deployment of an application on Kubernetes cluster in Azure:
-- ansible:
-- terraform: contains deployment definitions for quick provisioning of the underlying infrastructure (Azure resources namely Network interface, Public IP address, Virtual machine, etc.). 
-
+- terraform: contains the Terraform plan for quick provisioning of the underlying infrastructure (Azure resources namely Network interface, Public IP address, Virtual machine, etc.). 
+- ansible: contains the Ansible playbooks for quick provisioning of the k8s cluster and application.
 
 ## License
 
