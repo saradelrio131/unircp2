@@ -15,5 +15,5 @@ spec:
     - hard
     - nfsvers=4.1
   nfs:
-    path: "{{ nfs_dir }}"
-    server: "{{ nfs_ip }}"
+    path: /srv/nfs
+    server: 10.0.1.10
