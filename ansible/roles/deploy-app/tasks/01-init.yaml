@@ -15,7 +15,7 @@
 
 # $ kubectl apply -f nfs-pv.yaml 
 - name: Create PV nfs-pv
-  command: sudo kubectl apply -f
+  command: sudo kubectl apply -f https://github.com/saradelrio131/unircp2/blob/main/ansible/manifests/nfs-pv.yaml
   become: yes
   become_user: kubeadmin
   run_once: true
