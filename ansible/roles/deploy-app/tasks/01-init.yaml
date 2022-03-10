@@ -7,8 +7,15 @@
   become: yes
 
 # $ kubectl create namespace webapp-volumes
-- name: Create a k8s namespace
-  command: sudo kubectl create namespace webapp-volumes
+#- name: Create a k8s namespace
+#  command: sudo kubectl create namespace webapp-volumes
+#  become: yes
+#  become_user: kubeadmin
+#  run_once: true
+
+# $ kubectl apply -f nfs-pv.yaml 
+- name: Create PV nfs-pv
+  command: sudo kubectl apply -f
   become: yes
   become_user: kubeadmin
   run_once: true

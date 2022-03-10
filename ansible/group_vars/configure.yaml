@@ -1,6 +1,7 @@
 ---
 # NFS Shared conf
 nfs_dir: /srv/nfs
+nfs_ip: 10.0.1.10
 
 # k8s master node conf
 master: 10.0.1.10
