@@ -1,19 +1,20 @@
+--- 
 apiVersion: v1
 kind: PersistentVolume
-metadata:
+metadata: 
   name: nfs-pv
   namespace: webapp-volumes
-spec:
-  capacity:
-    storage: 10Gi
-  volumeMode: Filesystem
-  accessModes:
+spec: 
+  accessModes: 
     - ReadWriteMany
-  persistentVolumeReclaimPolicy: Recycle
-  storageClassName: nfs
-  mountOptions:
+  capacity: 
+    storage: 10Gi
+  mountOptions: 
     - hard
     - nfsvers=4.1
-  nfs:
+  nfs: 
     path: /srv/nfs
-    server: 10.0.1.10
+    server: "10.0.1.10"
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: nfs
+  volumeMode: Filesystem
