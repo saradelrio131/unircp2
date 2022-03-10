@@ -1,0 +1,14 @@
+---
+# Workaround to prevent the error: ModuleNotFoundError: No module named 'kubernetes'
+- name: Install kubernetes for Python 3 specifically, using the 'pip3' executable
+  pip:
+    name: kubernetes
+    executable: pip3
+  become: yes
+
+# $ kubectl create namespace webapp-volumes
+- name: Create a k8s namespace
+  command: sudo kubectl create namespace webapp-volumes
+  become: yes
+  become_user: kubeadmin
+  run_once: true

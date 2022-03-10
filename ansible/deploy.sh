@@ -1,30 +1,35 @@
-#!/bin/bash
+#!/bin/bash04-playbook.yaml
 
-# Commands to run
+# Commands to run are as follows.
+# NB! They must be executed one by one.
+# NB! Output from 04-playbook.yaml must be saved as it is needed as input (for more info please see deployment guide)
 
-# Perform initialization taks on all VMs
+# 1 - Perform initialization taks on all VMs
 ansible-playbook -i hosts 01-playbook.yaml
 
-# Install NFS server
+# 2 - Install NFS server
 ansible-playbook -i hosts 02-playbook.yaml
 
-# Perform common tasks on all k8s nodes
+# 3 - Perform common tasks on all k8s nodes
 ansible-playbook -i hosts 03-playbook.yaml
 
-# Configure k8s on master node 
+# 4 - Configure k8s on master node 
 ansible-playbook -i hosts 04-playbook.yaml
 
-# Install SDN in Azure
+# 5 - Install SDN in Azure
 ansible-playbook -i hosts 05-playbook.yaml
 
-# Configure SDN in Azure
+# 6 - Configure SDN in Azure
 ansible-playbook -i hosts 06-playbook.yaml
 
-# Deploy ingress controller
+# 7 - Deploy ingress controller
 ansible-playbook -i hosts 07-playbook.yaml
 
-# Configure k8s workers
+# 8 - Configure k8s workers
 ansible-playbook -i hosts 08-playbook.yaml
 
-# Create non-admin user to manage the k8s cluster
+# 9 - Create non-admin user to manage the k8s cluster
 ansible-playbook -i hosts 09-playbook.yaml
+
+# 10 - Deploy app to k8s cluster
+ansible-playbook -i hosts 10-playbook.yaml
