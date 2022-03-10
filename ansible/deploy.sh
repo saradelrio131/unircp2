@@ -1,4 +1,4 @@
-#!/bin/bash04-playbook.yaml
+#!/bin/bash
 
 # Commands to run are as follows.
 # NB! They must be executed one by one.
