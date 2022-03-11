@@ -30,3 +30,12 @@
   become: yes
   become_user: kubeadmin
 
+# Create index.php
+- name: copy file /srv/nfs/index.php
+  copy:
+    src: index.php
+    dest: /srv/nfs/index.php
+    owner: root
+    group: root
+    mode: 0644
+  become: true
