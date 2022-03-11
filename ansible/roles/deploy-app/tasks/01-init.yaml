@@ -7,13 +7,26 @@
   become: yes
 
 # $ kubectl create namespace webapp-volumes
-#- name: Create a k8s namespace
-#  command: sudo kubectl create namespace webapp-volumes
-#  become: yes
-#  become_user: kubeadmin
-
-# $ kubectl apply -f nfs-pv.yaml 
-- name: Create PV nfs-pv
-  command: sudo kubectl apply -f https://raw.githubusercontent.com/saradelrio131/unircp2/main/ansible/manifests/pv.yaml
+- name: Create a k8s namespace
+  command: sudo kubectl create namespace webapp
   become: yes
   become_user: kubeadmin
+
+# $ kubectl apply -f webapp-pv.yaml 
+- name: Create PV webapp-pv
+  command: sudo kubectl apply -f https://raw.githubusercontent.com/saradelrio131/unircp2/main/ansible/manifests/webapp-pv.yaml
+  become: yes
+  become_user: kubeadmin
+
+# $ kubectl apply -f webapp-pvc.yaml
+- name: Create PVC webapp-pvc
+  command: sudo kubectl apply -f https://raw.githubusercontent.com/saradelrio131/unircp2/main/ansible/manifests/webapp-pvc.yaml
+  become: yes
+  become_user: kubeadmin
+
+# $ kubectl apply -f webapp.yaml
+- name: Create Deployment, Service, Ingress and ConfigMap
+  command: sudo kubectl apply -f https://raw.githubusercontent.com/saradelrio131/unircp2/main/ansible/manifests/webapp.yaml
+  become: yes
+  become_user: kubeadmin
+
